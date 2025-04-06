@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - DollarLess Enterprise</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">DollarLess Enterprise</div>
+        <nav>
+            <a href="../HTML/index.html">Home</a>
+            <span id="userGreeting"></span>
+            <a href="../HTML/Products.html">Products</a>
+            <a href="../HTML/about.html">About Us</a>
+            <a href="#" id="logoutLink" style="display: none;">Logout</a>
+            <a href="../HTML/login.html" id="loginLink"><button id="loginButton">Login</button></a>
+        </nav>
+    </header>
+
+    <!-- Pop-up Login Form -->
+    <div id="loginPopup" class="login-popup">
+        <div class="login-content">
+            <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+                <button type="submit">Login</button>
+                <button type="button" onclick="resetForm()">Cancel</button>
+            </form>
+            <p id="errorMessage" class="error"></p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to DollarLess Enterprise</h1>
+            <p>Your one-stop shop for fresh groceries at the best prices!</p>
+            <a href="products.html" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/apples.jpg" alt="Fresh Apples">
+                <h3>Fresh Apples</h3>
+                <p>$3.99</p>
+                <button onclick="addToCart('Fresh Apples', 3.99)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/carrots.jpg" alt="Organic Carrots">
+                <h3>Organic Carrots</h3>
+                <p>$2.50</p>
+                <button onclick="addToCart('Organic Carrots', 2.50)">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="images/chicken.jpg" alt="Chicken Breasts">
+                <h3>Chicken Breasts</h3>
+                <p>$5.99</p>
+                <button onclick="addToCart('Chicken Breasts', 5.99)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DollarLess Enterprise</p>
+            <nav>
+                <a href="../HTML/index.html">Home</a>
+                <a href="../HTML/Products.html">Products</a>
+                <a href="../HTML/about.html">About Us</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="../JS/script.js"></script>
+</body>
+</html>
