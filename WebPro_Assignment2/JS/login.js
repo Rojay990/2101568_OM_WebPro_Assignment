@@ -40,19 +40,8 @@ function disableLogin(seconds) {
 toggleSignup.addEventListener("click", (event) => {
     event.preventDefault();
     isSignup = !isSignup;
-    formTitle.textContent = isSignup ? "Sign Up" : "Login";
-    toggleSignup.textContent = isSignup ? "Already have an account? Login" : "Not a member? Sign up";
-
     if (isSignup) {
-        const emailGroup = document.createElement("div");
-        emailGroup.classList.add("input-group");
-        emailGroup.innerHTML = `
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-        `;
-        authForm.insertBefore(emailGroup, authForm.firstChild);
-    } else {
-        document.querySelector(".input-group").remove();
+        window.location.href = "register.html";
     }
 });
 
