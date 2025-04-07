@@ -111,3 +111,10 @@ function validateEmail(email) {
 }
 
 window.onload = checkLockout;
+
+function logAllUsers() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    console.log("Registered Users:", users);
+}
+
+logAllUsers();
