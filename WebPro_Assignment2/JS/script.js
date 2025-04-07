@@ -1,9 +1,3 @@
-// Sample users: Regular user and admin
-const USERS = [
-    { username: "user", password: "password123", role: "user" },
-    { username: "admin", password: "admin123", role: "admin" }
-];
-
 // Track login attempts
 let loginAttempts = parseInt(localStorage.getItem('loginAttempts')) || 0;
 
@@ -148,7 +142,6 @@ function loadProducts() {
         { name: "Ground Beef", price: 6.50, image: "../images/beef.jpg" },
         { name: "Fresh Broccoli", price: 1.99, image: "../images/broccoli.jpg" }
     ];
-    console.log("Products loaded:", products);
     const productGrid = document.querySelector(".product-grid");
     if (productGrid) {
         productGrid.innerHTML = "";

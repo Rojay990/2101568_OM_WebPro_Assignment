@@ -38,7 +38,7 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    background: url('banner.jpg') no-repeat center center/cover;
+    background-color: rgba(233, 238, 99, 0.701);
     height: 450px;
     display: flex;
     justify-content: center;
