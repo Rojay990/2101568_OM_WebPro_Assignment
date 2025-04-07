@@ -79,14 +79,26 @@ function addQtyListeners() {
     
       if (action === "increase") {
         item.quantity++;
-      } else if (action === "decrease" && item.quantity > 1) {
-        item.quantity--;
+      } else if (action === "decrease") {
+        if (item.quantity > 1) {
+          item.quantity--;
+        } else {
+          // Remove item from cart if quantity is less than 1
+          cartItems.splice(cartItems.indexOf(item), 1);
+        }
       }
     
       renderCart();
     });
     
   });
+}
+
+const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+if (currentUser) {
+  console.log("Current User:", currentUser);
+} else {
+  console.log("No user is currently logged in.");
 }
 
 renderCart();
