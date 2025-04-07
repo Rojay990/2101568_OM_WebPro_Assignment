@@ -5,18 +5,17 @@ const errorMessage = document.getElementById("errorMessage");
 const lockoutMessage = document.getElementById("lockoutMessage");
 const loginButton = document.getElementById("loginButton");
 
-let isSignup = false;
 const LOCKOUT_TIME = 1 * 60 * 1000; // 1 minutes in milliseconds
 
 function checkLockout() {
-    const lockoutData = JSON.parse(localStorage.getItem("lockout")) || {};
+    const lockoutData = JSON.parse(sessionStorage.getItem("lockout")) || {};
     const now = Date.now();
 
     if (lockoutData.time && now < lockoutData.time + LOCKOUT_TIME) {
         const remainingTime = Math.ceil((lockoutData.time + LOCKOUT_TIME - now) / 1000);
         disableLogin(remainingTime);
     } else {
-        localStorage.removeItem("lockout");
+        sessionStorage.removeItem("lockout");
     }
 }
 
@@ -38,69 +37,37 @@ function disableLogin(seconds) {
 }
 
 toggleSignup.addEventListener("click", (event) => {
-    event.preventDefault();
-    isSignup = !isSignup;
-    if (isSignup) {
         window.location.href = "register.html";
-    }
 });
 
 authForm.addEventListener("submit", (event) => {
     event.preventDefault();
     errorMessage.textContent = "";
 
-    const username = document.getElementById("username").value;
+    const trn = document.getElementById("trn").value;
     const password = document.getElementById("password").value;
-    let attempts = JSON.parse(localStorage.getItem("loginAttempts")) || { count: 0, time: null };
+    let attempts = JSON.parse(sessionStorage.getItem("loginAttempts")) || { count: 0, time: null };
 
-    if (attempts.count >= 3) {
-        attempts.time = Date.now();
-        localStorage.setItem("lockout", JSON.stringify(attempts));
-        checkLockout();
-        return;
-    }
 
-    if (isSignup) {
-        const email = document.getElementById("email").value;
+    console.log("I ran");
 
-        if (!validateEmail(email)) {
-            errorMessage.textContent = "Invalid email format!";
-            return;
-        }
+    const users = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+    console.log(users);
+    console.log("Theses are the users");
+    const user = users.find(user => user.trn === trn && user.password === password);
 
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        if (users.some(user => user.username === username || user.email === email)) {
-            errorMessage.textContent = "Username or Email already exists!";
-            return;
-        }
-
-        const hashedPassword = btoa(password);
-        users.push({ username, email, password: hashedPassword });
-        localStorage.setItem("users", JSON.stringify(users));
-
-        alert("Signup successful! You can now log in.");
-        window.location.reload();
+    if (user) {
+        alert("Login successful!");
+        sessionStorage.removeItem("loginAttempts");
+        window.location.href = "index.html"; // Redirect to index.html or homepage
     } else {
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        const user = users.find(user => user.username === username);
-
-        if (user && user.password === btoa(password)) {
-            localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("currentUser", username);
-            localStorage.removeItem("loginAttempts");
-            alert("Login successful!");
-            window.location.href = "products.html";
-        } else {
-            attempts.count++;
-            if (attempts.count >= 3) {
-                attempts.time = Date.now();
-                localStorage.setItem("lockout", JSON.stringify(attempts));
-                checkLockout();
-            } else {
-                localStorage.setItem("loginAttempts", JSON.stringify(attempts));
-                errorMessage.textContent = `Invalid login credentials! Attempts left: ${3 - attempts.count}`;
-            }
+        attempts.count++;
+        sessionStorage.setItem("loginAttempts", JSON.stringify(attempts));
+        errorMessage.textContent = "Invalid TRN or password.";
+        if (attempts.count >= 3) {
+            attempts.time = Date.now();
+            sessionStorage.setItem("lockout", JSON.stringify(attempts));
+            checkLockout();
         }
     }
 });
@@ -113,7 +80,7 @@ function validateEmail(email) {
 window.onload = checkLockout;
 
 function logAllUsers() {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("RegistrationData")) || [];
     console.log("Registered Users:", users);
 }
 

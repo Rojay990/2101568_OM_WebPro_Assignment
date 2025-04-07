@@ -1,3 +1,17 @@
+
+function logAllUsers() {
+    const users = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+    
+    if (users.length === 0) {
+        console.log("No users registered yet.");
+    } else {
+        console.log("=== Registered Users ===");
+        users.forEach((user, index) => {
+            console.log(`User ${index + 1}:`, user);
+        });
+    }
+}
+logAllUsers();
 const toggleSignup = document.getElementById("toggleLogin");
 document.getElementById('registrationForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -65,9 +79,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     existingData.push(userData);
     localStorage.setItem('RegistrationData', JSON.stringify(existingData));
     alert("Registration successful!");
-    resetForm();
-    console.log("User data saved:", userData);
-    window.location.href = "login.html"; // Redirect to login page after registration
+    window.location.href = "login.html";
 });
 
 function calculateAge(dob) {
