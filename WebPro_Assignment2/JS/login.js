@@ -49,8 +49,6 @@ authForm.addEventListener("submit", (event) => {
     let attempts = JSON.parse(sessionStorage.getItem("loginAttempts")) || { count: 0, time: null };
 
 
-    console.log("I ran");
-
     const users = JSON.parse(localStorage.getItem("RegistrationData")) || [];
     console.log(users);
     console.log("Theses are the users");
