@@ -57,7 +57,7 @@ authForm.addEventListener("submit", (event) => {
     if (user) {
         alert("Login successful!");
         sessionStorage.removeItem("loginAttempts");
-        sessionStorage.setItem("currentUser", JSON.stringify(user));
+        localStorage.setItem("currentUser", JSON.stringify(user));
         window.location.href = "HTML/dashboard.html"; // Redirect to dashboard.html or homepage
     } else {
         attempts.count++;

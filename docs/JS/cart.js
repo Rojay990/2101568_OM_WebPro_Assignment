@@ -1,31 +1,21 @@
-const cartItems = [
-  {
-    id: 1,
-    name: "Pi Pizza Oven",
-    note: "(Estimated Ship Date: June 6th)",
-    price: 469.99,
-    quantity: 1
-  },
-  {
-    id: 2,
-    name: "Grill Ultimate Bundle",
-    price: 549.99,
-    quantity: 4
-  },
-  {
-    id: 3,
-    name: "Starters (4 pack)",
-    price: 0.00,
-    quantity: 1
-  },
-  {
-    id: 4,
-    name: "Charcoal Grill Pack",
-    price: 0.00,
-    quantity: 1
-  }
-];
+const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
+let cartData = [];
+
+if (currentUser) {
+  console.log("Current User:", currentUser);
+  const user = userData.find(user => user.trn === currentUser.trn);
+  if (user) {
+    cartData = Object.values(user.cart || {}); // Convert cart object to array
+    console.log("Cart Data:", cartData);
+  } else {
+    console.log("User not found in RegistrationData.");
+  }
+} else {
+  console.log("No user is currently logged in.");
+}
 
 function renderCart() {
   const tbody = document.getElementById("cart-body");
@@ -37,7 +27,7 @@ function renderCart() {
   let subtotal = 0;
   tbody.innerHTML = "";
 
-  cartItems.forEach((item) => {
+  cartData.forEach((item) => {
     const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
 
@@ -60,7 +50,7 @@ function renderCart() {
   const tax = subtotal * 0.10;
   const grandTotal = subtotal + tax;
 
-  itemCount.textContent = cartItems.length;
+  itemCount.textContent = cartData.length;
   subtotalEl.textContent = subtotal.toFixed(2);
   taxEl.textContent = tax.toFixed(2);
   grandTotalEl.textContent = grandTotal.toFixed(2);
@@ -73,32 +63,38 @@ function addQtyListeners() {
     btn.addEventListener("click", () => {
       const id = parseInt(btn.dataset.id);
       const action = btn.dataset.action;
-    
-      const item = cartItems.find(i => i.id === id);
+
+      const item = cartData.find(i => i.id === id);
       if (!item) return;
-    
+
       if (action === "increase") {
         item.quantity++;
       } else if (action === "decrease") {
         if (item.quantity > 1) {
           item.quantity--;
         } else {
-          // Remove item from cart if quantity is less than 1
-          cartItems.splice(cartItems.indexOf(item), 1);
+          cartData = cartData.filter(i => i.id !== id);
         }
       }
-    
+
+      // Update user cart in localStorage
+      const userIndex = userData.findIndex(user => user.trn === currentUser.trn);
+      if (userIndex !== -1) {
+        const updatedCart = {};
+        cartData.forEach(i => {
+          updatedCart[i.id] = i;
+        });
+
+        userData[userIndex].cart = updatedCart;
+        localStorage.setItem("RegistrationData", JSON.stringify(userData));
+
+        currentUser.cart = updatedCart;
+        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+      }
+
       renderCart();
     });
-    
   });
-}
-
-const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-if (currentUser) {
-  console.log("Current User:", currentUser);
-} else {
-  console.log("No user is currently logged in.");
 }
 
 renderCart();

@@ -8,8 +8,6 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const username = localStorage.getItem('username') || 'Guest';
 
 document.addEventListener("DOMContentLoaded", function () {
-    displayUser();
-    setupShopNowButton();
     loadProductsIfNeeded();
 });
 
@@ -163,4 +161,14 @@ function generateInvoice() {
 // Generate invoice if on the invoice page
 if (window.location.pathname.includes("invoice.html")) {
     generateInvoice();
+}
+
+// Display current user information on the dashboard page
+if (window.location.pathname.includes("dashboard.html")) {
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (currentUser) {
+        console.log("Current User Information:", currentUser);
+    } else {
+        console.log("No user is currently logged in.");
+    }
 }

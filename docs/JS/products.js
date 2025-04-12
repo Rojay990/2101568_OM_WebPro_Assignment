@@ -45,7 +45,7 @@ function loadProductsFromArray(page = 1) {
             <div class="product-info">
                 <p class="product-name">${product.name}</p>
                 <p class="product-price">$${product.price.toFixed(2)}</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
             </div>
         `;
 
@@ -74,6 +74,64 @@ function createPagination() {
     }
 }
 
+// Add event listener to "Add to Cart" buttons
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-to-cart")) {
+        const productId = e.target.getAttribute("data-id");
+        console.log("Added product with ID:", productId);
+
+        const selectedItem = [];
+        const product = products.find(p => p.id === parseInt(productId));
+        if (product) {
+            selectedItem.push(product);
+            console.log("Selected Item:", selectedItem);
+        } else {
+            console.error("Product not found!");
+        }
+
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+
+if (currentUser && currentUser.trn) {
+    const matchingUserIndex = registrationData.findIndex(user => user.trn === currentUser.trn);
+
+    if (matchingUserIndex !== -1) {
+        const productId = parseInt(e.target.getAttribute("data-id"));
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            const userCart = registrationData[matchingUserIndex].cart || {};
+
+            if (userCart[productId]) {
+                userCart[productId].quantity += 1;
+            } else {
+                userCart[productId] = {
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                };
+            }
+
+            // Update cart in both places
+            registrationData[matchingUserIndex].cart = userCart;
+            localStorage.setItem("RegistrationData", JSON.stringify(registrationData));
+
+            currentUser.cart = userCart;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+            console.log("Cart updated for user:", currentUser.trn);
+        } else {
+            console.error("Product not found.");
+        }
+    } else {
+        console.error("User with TRN not found in RegistrationData.");
+    }
+} else {
+    console.log("No user is currently logged in.");
+}
+    }
+});
 
 
 
