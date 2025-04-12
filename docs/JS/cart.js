@@ -54,6 +54,7 @@ function renderCart() {
   taxEl.textContent = tax.toFixed(2);
   grandTotalEl.textContent = grandTotal.toFixed(2);
 
+  freeShipping(grandTotal);
   addQtyListeners();
 }
 
@@ -96,4 +97,12 @@ function addQtyListeners() {
   });
 }
 
+function freeShipping(grandTotal){
+  const freeShippingMessage = document.querySelector(".free-shipping");
+  if (grandTotal < 100) {
+    freeShippingMessage.style.display = "none";
+  } else {
+    freeShippingMessage.style.display = "block";
+  }
+}
 renderCart();
