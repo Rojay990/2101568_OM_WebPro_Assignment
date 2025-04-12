@@ -13,32 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProductsIfNeeded();
 });
 
-// Display username and logout button
-function displayUser() {
-    const userDisplay = document.getElementById("userDisplay");
-    if (userDisplay) {
-        userDisplay.innerHTML = `Welcome, ${username} ` +
-            (username !== 'Guest' ? '<button onclick="logout()">Logout</button>' : '');
-    }
-
-    // Show username with cart icon
-    const nav = document.querySelector("nav");
-    if (nav) {
-        nav.innerHTML += `<a href="#" class="cart"><span>🛒</span> ${username}</a>`;
-    }
-}
-
-// Handle "Shop Now" button click
-function setupShopNowButton() {
-    document.getElementById("shopNow")?.addEventListener("click", function (event) {
-        event.preventDefault();
-        if (!isLoggedIn()) {
-            window.location.href = "login.html";
-        } else {
-            window.location.href = "products.html";
-        }
-    });
-}
 
 // Load products only if on the products page
 function loadProductsIfNeeded() {
@@ -110,39 +84,12 @@ function isAdmin() {
 
 // Logout function
 function logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
     window.location.href = "index.html";
 }
 
-// Admin: Reset login attempts
-function resetLoginAttempts() {
-    if (isAdmin()) {
-        loginAttempts = 0;
-        localStorage.setItem('loginAttempts', loginAttempts);
-        alert("Admin has reset login attempts.");
-        document.getElementById("errorMessage").textContent = "";
-        document.getElementById("loginButton").disabled = false;
-    } else {
-        alert("You do not have permission to reset login attempts.");
-    }
-}
 
 // Load Products Function
 function loadProducts() {
-    const products = [
-        { name: "Fresh Apples", price: 3.99, image: "../images/apples.jpg" },
-        { name: "Organic Carrots", price: 2.50, image: "../images/carrots.jpg" },
-        { name: "Chicken Breasts", price: 5.99, image: "../images/chicken.jpg" },
-        { name: "Whole Milk", price: 1.99, image: "../images/milk.jpg" },
-        { name: "Whole Grain Bread", price: 2.00, image: "../images/bread.jpg" },
-        { name: "Fresh Strawberries", price: 4.50, image: "../images/strawberries.jpg" },
-        { name: "Cage-Free Eggs", price: 3.00, image: "../images/eggs.jpg" },
-        { name: "Organic Spinach", price: 2.99, image: "../images/spinach.jpg" },
-        { name: "Ground Beef", price: 6.50, image: "../images/beef.jpg" },
-        { name: "Fresh Broccoli", price: 1.99, image: "../images/broccoli.jpg" }
-    ];
     const productGrid = document.querySelector(".product-grid");
     if (productGrid) {
         productGrid.innerHTML = "";
