@@ -100,7 +100,6 @@ function failedLogin() {
 // Check if user is logged in
 function isLoggedIn() {
     let currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || null;
-    if()
     sessionStorage.setItem("currentUser", JSON.stringify(user));
 }
 
