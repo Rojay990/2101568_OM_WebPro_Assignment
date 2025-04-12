@@ -1,5 +1,4 @@
 const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
 sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
 let cartData = [];

@@ -89,7 +89,6 @@ document.addEventListener("click", function (e) {
             console.error("Product not found!");
         }
 
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
 
 if (currentUser && currentUser.trn) {
@@ -132,56 +131,3 @@ if (currentUser && currentUser.trn) {
 }
     }
 });
-
-
-
-// Toggle the side navigation menu
-function toggleMenu() {
-    const sidenav = document.getElementById("mySidenav");
-    if (sidenav) {
-        sidenav.style.width = sidenav.style.width === "250px" ? "0" : "250px";
-    } else {
-        console.error("Side navigation menu not found!");
-    }
-}
-
-// Close the side navigation menu
-function closeNav() {
-    const sidenav = document.getElementById("mySidenav");
-    if (sidenav) {
-        sidenav.style.width = "0";
-    } else {
-        console.error("Side navigation menu not found!");
-    }
-}
-
-// Handle login/logout functionality
-document.addEventListener("DOMContentLoaded", function() {
-    const isLoggedIn = localStorage.getItem("currentUser") === "true";
-    const sideLoginLogoutLink = document.getElementById("sideLoginLogoutLink");
-
-    if (isLoggedIn) {
-        sideLoginLogoutLink.textContent = "Logout";
-        sideLoginLogoutLink.onclick = function() {
-        localStorage.removeItem("currentUser");
-            logout();
-            return false; // Prevent default link behavior
-        };
-        sideLoginLogoutLink.onclick = logout;
-    } else {
-        sideLoginLogoutLink.textContent = "Login";
-        sideLoginLogoutLink.href = "login.html";
-    }
-});
-
-// Logout function
-function logout() {
-    localStorage.setItem("isLoggedIn", "false");
-    window.location.href = "index.html";
-}
-
-// Login function
-function login() {
-    localStorage.setItem("isLoggedIn", "true");
-    window.location.href = "index.html";
-}

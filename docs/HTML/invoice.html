@@ -5,125 +5,57 @@ html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice - DollarLess Enterprise</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Reset default browser styles */
-        body, h1, h2, p, div, button, table, th, td {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            background-color: #34495e;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .invoice {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .invoice h2 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .invoice-summary {
-            font-weight: bold;
-        }
-
-        .invoice-summary p {
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        button:hover {
-            background-color: #2ecc71;
-        }
-
-        button + button {
-            margin-left: 10px;
-        }
-
-        .invoice-actions {
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #777;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/invoice.css">
 </head>
 <body>
-    <header>
-        <div class="logo">DollarLess Enterprise</div>
-        <nav>
-            <a href="../HTML/Products.html">Back to Products</a>
-            <a href="../HTML/about.html">About Us</a>
-        </nav>
+    <a name="head"><header class="header"></a>
+        <div class="left-section">
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div>
+                <a href="../HTML/dashboard.html">
+                    <img class="header-logo" src="../images/header/DollarLess Enterprise Logo.png" alt="IMAGE NOT FOUND">
+                </a>  
+        </div>
+        </div>
+
+        <div class="middle-section">
+            <h2>DollarLess Enterprise</h2>
+        </div>
+
+        <a href="dashboardPage.html">
+            <div class="right-section">
+                <div class="invoice-icon-container">
+                    <img class="invoice-icon" src="../images/header/invoice-icon.png" alt="">
+                    <h4>Invoice</h4>
+            </div>
+        </a>
+
+        <a href="cart.html">
+            <div class="bag-icon-container">
+                <img class="bag-icon" src="../images/header/bag-icon.png" alt="">
+                <h4>Cart</h4>
+            </div>
+        </a>
+
+        <a href="about.html">
+            <div class="about-us-container">
+                <img class="bag-icon" src="../images/header/about-us.png" alt="">
+                <h4>About Us</h4>
+            </div>
+        </a>
+        </div>
     </header>
+
+    <!-- Side Navigation Menu -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="dashboard.html">Home</a>
+        <a href="Products.html">Products</a>
+        <a href="#" id="sideLoginLogoutLink">Login</a>
+        <a href="about.html">About Us</a>
+    </div>
 
     <main>
         <section class="invoice">

@@ -5,80 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - DollarLess Enterprise</title>
     <link rel="stylesheet" href="../CSS/styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #0056b3;
-            color: black;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 16px;
-        }
-        main {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .about-us {
-            text-align: center;
-        }
-        h2 {
-            color: #0056b3;
-        }
-        .info p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .info a {
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .company-info {
-            margin-top: 30px;
-        }
-        .slogan {
-            font-size: 20px;
-            font-style: italic;
-            color: #0056b3;
-            margin-bottom: 20px;
-        }
-        .mission, .vision {
-            background: #e9f5ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/aboutUs.css">
 </head>
 <body>
-    <header>
-        <div class="logo">DollarLess Enterprise</div>
-        <nav>
-            <a href="../HTML/index.html">Home</a>
-            <a href="../HTML/Products.html">Products</a>
-        </nav>
+    <a name="head"><header class="header"></a>
+        <div class="left-section">
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div>
+                <a href="../HTML/dashboard.html">
+                    <img class="header-logo" src="../images/header/DollarLess Enterprise Logo.png" alt="IMAGE NOT FOUND">
+                </a>  
+        </div>
+        </div>
+
+        <div class="middle-section">
+            <h2>DollarLess Enterprise</h2>
+        </div>
+
+        <a href="dashboardPage.html">
+            <div class="right-section">
+                <div class="invoice-icon-container">
+                    <img class="invoice-icon" src="../images/header/invoice-icon.png" alt="">
+                    <h4>Invoice</h4>
+            </div>
+        </a>
+
+        <a href="cart.html">
+            <div class="bag-icon-container">
+                <img class="bag-icon" src="../images/header/bag-icon.png" alt="">
+                <h4>Cart</h4>
+            </div>
+        </a>
+
+        <a href="about.html">
+            <div class="about-us-container">
+                <img class="bag-icon" src="../images/header/about-us.png" alt="">
+                <h4>About Us</h4>
+            </div>
+        </a>
+        </div>
     </header>
+
+    <!-- Side Navigation Menu -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="dashboard.html">Home</a>
+        <a href="Products.html">Products</a>
+        <a href="#" id="sideLoginLogoutLink">Login</a>
+        <a href="about.html">About Us</a>
+    </div>
 
     <main>
         <section class="about-us">
@@ -104,5 +80,7 @@
             </div>
         </section>
     </main>
+
+    <script src="../JS/script.js"></script>
 </body>
 </html>
