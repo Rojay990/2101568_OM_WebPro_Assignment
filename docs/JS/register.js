@@ -97,7 +97,3 @@ function resetForm() {
     document.getElementById('error').textContent = '';
 }
 
-toggleLogin.addEventListener("click", (event) => {
-        console.log("Login link was clicked");
-});
-
