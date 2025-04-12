@@ -37,7 +37,7 @@ function disableLogin(seconds) {
 }
 
 toggleSignup.addEventListener("click", (event) => {
-        window.location.href = "register.html";
+        window.location.href = "HTML/register.html";
 });
 
 authForm.addEventListener("submit", (event) => {
@@ -58,7 +58,7 @@ authForm.addEventListener("submit", (event) => {
         alert("Login successful!");
         sessionStorage.removeItem("loginAttempts");
         sessionStorage.setItem("currentUser", JSON.stringify(user));
-        window.location.href = "dashboard.html"; // Redirect to dashboard.html or homepage
+        window.location.href = "HTML/dashboard.html"; // Redirect to dashboard.html or homepage
     } else {
         attempts.count++;
         sessionStorage.setItem("loginAttempts", JSON.stringify(attempts));
