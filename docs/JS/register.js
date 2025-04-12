@@ -96,6 +96,6 @@ function resetForm() {
     document.getElementById('registrationForm').reset();
     document.getElementById('error').textContent = '';
 }
-
+console.log("=== Registration Form ===");
 
 
