@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DollarLess Enterprise</title>
+    <link rel="stylesheet" href="CSS/login.css">
+</head>
+<body>
+    
+
+<div class="container">
+    <h2 id="formTitle">Login</h2>
+    
+    <form id="authForm">
+        <div class="input-group">
+            <input type="text" id="trn" placeholder="TAX REGISTRATION NUMBER (TRN)" required>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" placeholder="PASSWORD" required>
+        </div>
+
+        <button type="submit" id="loginButton">Login</button>
+        <p class="error-message" id="errorMessage"></p>
+        <p class="error-message" id="lockoutMessage" style="color: rgb(255, 187, 0); display: none;"></p>
+    </form>
+
+    <p class="switch-form">
+        Not a member? <a href="#" id="toggleSignup">Sign up</a>
+    </p>
+</div>
+<script src="JS/login.js"></script>
+</body>
+</html>
