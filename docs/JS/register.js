@@ -98,6 +98,6 @@ function resetForm() {
 }
 
 toggleLogin.addEventListener("click", (event) => {
-        window.location.href = "../login.html";
+        window.location.href = "../index.html";
 });
 
