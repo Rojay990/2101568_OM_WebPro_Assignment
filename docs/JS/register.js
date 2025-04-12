@@ -79,7 +79,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     existingData.push(userData);
     localStorage.setItem('RegistrationData', JSON.stringify(existingData));
     alert("Registration successful!");
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
 });
 
 function calculateAge(dob) {
