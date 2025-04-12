@@ -95,7 +95,7 @@ function calculateAge(dob) {
 function resetForm() {
     document.getElementById('registrationForm').reset();
     document.getElementById('error').textContent = '';
-
+}
 
 
 
