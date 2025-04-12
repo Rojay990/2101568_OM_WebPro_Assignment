@@ -53,30 +53,14 @@ body{
 }
 
 .middle-section h1{
-    font-size: 35px;
+    font-size: 25px;
     font-weight: 1000;
     font-style: italic;
     color: #34495e;
 }
 
-.gender-label{
-    display: flex;
-    flex-direction: row;
-    height: 70px;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: 1000;
-    font-style: italic;
-    padding: 10px 20px;
-}
 
-.gender-label:hover{
-    background-color: #bdfdfd;
 
-}
 
 
 .right-section{
