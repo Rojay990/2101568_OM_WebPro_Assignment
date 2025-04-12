@@ -157,12 +157,16 @@ function closeNav() {
 
 // Handle login/logout functionality
 document.addEventListener("DOMContentLoaded", function() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const isLoggedIn = localStorage.getItem("currentUser") === "true";
     const sideLoginLogoutLink = document.getElementById("sideLoginLogoutLink");
 
     if (isLoggedIn) {
         sideLoginLogoutLink.textContent = "Logout";
-        sideLoginLogoutLink.href = "#";
+        sideLoginLogoutLink.onclick = function() {
+        localStorage.removeItem("currentUser");
+            logout();
+            return false; // Prevent default link behavior
+        };
         sideLoginLogoutLink.onclick = logout;
     } else {
         sideLoginLogoutLink.textContent = "Login";
