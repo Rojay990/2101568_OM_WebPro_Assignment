@@ -9,7 +9,18 @@ const products = [
     { id: 7, name: "Cage-Free Eggs", price: 3.00, image: "../images/eggs.jpg" },
     { id: 8, name: "Organic Spinach", price: 2.99, image: "../images/spinach.jpg" },
     { id: 9, name: "Ground Beef", price: 6.50, image: "../images/beef.jpg" },
-    { id: 10, name: "Fresh Broccoli", price: 1.99, image: "../images/broccoli.jpg" }
+    { id: 10, name: "Fresh Broccoli", price: 1.99, image: "../images/broccoli.jpg" },
+    { id: 11, name: "Atlantic Salmon Fillet", price: 9.86, image: "../images/salmon.jpg" },
+    { id: 12, name: "Fresh Blueberries", price: 6.94, image: "../images/blueberries.jpg" },
+    { id: 13, name: "Quaker Instant Oatmeal, Apple", price: 1.08, image: "../images/oatmeal.jpg" },
+    { id: 14, name: "Cream Cheese", price: 3.42, image: "../images/cream.jpg" },
+    { id: 15, name: "Russet Potatoes", price: 5.91, image: "../images/potato.jpg" },
+    { id: 16, name: "Smoked Thick Cut Sliced Bacon", price: 11.99, image: "../images/bacon.jpg" },
+    { id: 17, name: "Breakfast Sausage", price: 4.99, image: "../images/sausage.jpg" },
+    { id: 18, name: "Minute Maid", price: 2.08, image: "../images/minutemaid.jpg" },
+    { id: 19, name: "Ocean Spray", price: 3.68, image: "../images/ocean-spray.jpg" },
+    { id: 20, name: "Tropicana Classic Lemonade", price: 2.88, image: "../images/tropicana.jpg"}
+
 ];
 
 function showAddToCartMessage(productName) {
