@@ -70,6 +70,15 @@ section.products button:hover {
     border-radius: 10px;
 }
 
+.product-preview:hover {
+    box-shadow: 5px 5px 10px rgba(58, 27, 27, 0.6);
+    transition: all 0.3s ease;
+}
+.product-preview:hover .product-display {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
 
 .product-display {
     width: 100%;
