@@ -56,3 +56,7 @@ th, td {
   color: green;
   font-style: italic;
 }
+
+.free-shipping{
+  display: none;
+}

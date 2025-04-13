@@ -104,3 +104,7 @@ function freeShipping(grandTotal){
   }
 }
 renderCart();
+
+document.getElementById("checkout").addEventListener("click", () => {
+  window.location.href = "checkout.html";
+});

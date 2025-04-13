@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Checkout - DollarLess Enterprise</title>
+  <link rel="stylesheet" href="../CSS/styles.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/checkout.css">
+</head>
+
+<body>
+
+  <a name="head"><header class="header"></a>
+    <div class="left-section">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <div>
+            <a href="../HTML/dashboard.html">
+                <img class="header-logo" src="../images/header/DollarLess Enterprise Logo.png" alt="IMAGE NOT FOUND">
+            </a>  
+    </div>
+    </div>
+
+    <div class="middle-section">
+        <h2>DollarLess Enterprise</h2>
+    </div>
+
+    <a href="dashboardPage.html">
+        <div class="right-section">
+            <div class="invoice-icon-container">
+                <img class="invoice-icon" src="../images/header/invoice-icon.png" alt="">
+                <h4>Invoice</h4>
+        </div>
+    </a>
+
+    <a href="cart.html">
+        <div class="bag-icon-container">
+            <img class="bag-icon" src="../images/header/bag-icon.png" alt="">
+            <h4>Cart</h4>
+        </div>
+    </a>
+
+    <a href="about.html">
+        <div class="about-us-container">
+            <img class="bag-icon" src="../images/header/about-us.png" alt="">
+            <h4>About Us</h4>
+        </div>
+    </a>
+    </div>
+</header>
+
+<!-- Side Navigation Menu -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="dashboard.html">Home</a>
+    <a href="Products.html">Products</a>
+    <a href="#" id="sideLoginLogoutLink">Login</a>
+    <a href="about.html">About Us</a>
+</div>
+
+  <!--  MAIN CHECKOUT FORM -->
+  <main>
+    <h1>Checkout</h1>
+
+    <section class="checkout-container">
+      <form class="checkout-form">
+        <!--  Billing -->
+        <h2>Billing Details</h2>
+        <label>Full Name <input type="text" required></label>
+        <label>Email <input type="email" required></label>
+        <label>Phone <input type="tel" required></label>
+
+        <!--  Shipping -->
+        <h2>Shipping Address</h2>
+        <label>Street Address <input type="text" required></label>
+        <label>City <input type="text" required></label>
+        <label>State/Province <input type="text" required></label>
+        <label>Postal Code <input type="text" required></label>
+        <label>Country <input type="text" required></label>
+
+        <!--  Payment -->
+        <h2>Payment Method</h2>
+        <label><input type="radio" name="payment" checked> Credit/Debit Card</label>
+        <label><input type="radio" name="payment"> PayPal</label>
+        <label><input type="radio" name="payment"> Cash on Delivery</label>
+
+        <!--  Promo -->
+        <h2>Promo Code</h2>
+        <input type="text" placeholder="Enter code (if any)">
+        <button type="button">Apply</button>
+
+        <!-- Order Summary -->
+        <h2>Order Summary</h2>
+        <div class="summary">
+          <p>Loading order...</p>
+        </div>
+
+        <!--  Submit Order -->
+        <button class="place-order" type="submit">Place Order</button>
+      </form>
+    </section>
+  </main>
+
+  <!--  FOOTER SECTION -->
+  <footer>
+    <p>&copy; 2025 DollarLess Enterprise</p>
+  </footer>
+
+  <script src="../JS/script.js"></script>
+  <script src="../JS/checkout.js"></script>
+
+</body>
+</html>
