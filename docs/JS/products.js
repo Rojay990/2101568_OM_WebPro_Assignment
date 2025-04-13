@@ -1,6 +1,6 @@
 
 const products = [
-    { id: 1, name: "Fresh Apples", price: 3.99, image: "../images/apples.jpg" },
+    { id: 1, name: "Fresh Apples", price: 3.99, image: "../images/apples.jpg", description: "Crisp and Juicy red apples, perfect for snacking and baking." },
     { id: 2, name: "Organic Carrots", price: 2.50, image: "../images/carrots.jpg" },
     { id: 3, name: "Chicken Breasts", price: 5.99, image: "../images/chicken.jpg" },
     { id: 4, name: "Whole Milk", price: 1.99, image: "../images/milk.jpg" },
