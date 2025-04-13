@@ -23,6 +23,25 @@ const products = [
 
 ];
 
+// Store products in localStorage under AllProducts
+const allProducts = JSON.parse(localStorage.getItem("AllProducts")) || [];
+
+// Update AllProducts with new products not already stored
+products.forEach(product => {
+    if (!allProducts.some(p => p.id === product.id)) {
+        allProducts.push(product);
+    }
+});
+
+// Save updated AllProducts back to localStorage
+localStorage.setItem("AllProducts", JSON.stringify(allProducts));
+
+// Retrieve and display all products stored in localStorage under AllProducts
+const storedProducts = JSON.parse(localStorage.getItem("AllProducts")) || [];
+console.log("Products stored in localStorage under 'AllProducts':", storedProducts);
+
+
+
 function showAddToCartMessage(productName) {
     const message = document.getElementById("add-to-cart-message");
     message.textContent = `✅ "${productName}" added to cart!`;
