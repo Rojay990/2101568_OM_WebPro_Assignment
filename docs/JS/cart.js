@@ -4,11 +4,9 @@ sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 let cartData = [];
 
 if (currentUser) {
-  console.log("Current User:", currentUser);
   const user = userData.find(user => user.trn === currentUser.trn);
   if (user) {
     cartData = Object.values(user.cart || {}); // Convert cart object to array
-    console.log("Cart Data:", cartData);
   } else {
     console.log("User not found in RegistrationData.");
   }

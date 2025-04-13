@@ -12,6 +12,18 @@ const products = [
     { id: 10, name: "Fresh Broccoli", price: 1.99, image: "../images/broccoli.jpg" }
 ];
 
+function showAddToCartMessage(productName) {
+    const message = document.getElementById("add-to-cart-message");
+    message.textContent = `✅ "${productName}" added to cart!`;
+    message.classList.add("show");
+
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+        message.classList.remove("show");
+    }, 3000);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     loadProductsFromArray(currentPage);
 });
@@ -84,6 +96,7 @@ document.addEventListener("click", function (e) {
         const product = products.find(p => p.id === parseInt(productId));
         if (product) {
             selectedItem.push(product);
+            showAddToCartMessage(product.name);
             console.log("Selected Item:", selectedItem);
         } else {
             console.error("Product not found!");

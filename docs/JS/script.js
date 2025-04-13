@@ -1,10 +1,4 @@
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// Display the current user from localStorage
-if (currentUser) {
-    console.log("Current User:", currentUser);
-} else {
-    console.log("No user is currently logged in.");
-}
 
 
 
