@@ -39,7 +39,7 @@ body.register-page {
 
 }
 
-.input-group input {
+.input-group input, select {
     margin-bottom: 15px;
     width: 100%;
     padding: 12px;
@@ -52,6 +52,11 @@ body.register-page {
 
 .input-group input::placeholder {
     color: #eee;
+}
+
+option {
+    background: #2a5298;
+    color: #e5e5e5;
 }
 
 .options {
