@@ -67,6 +67,7 @@ function loadProductsFromArray(page = 1) {
             </div>
             <div class="product-info">
                 <p class="product-name">${product.name}</p>
+                <p class="product-description"> ${product.description}</p>
                 <p class="product-price">$${product.price.toFixed(2)}</p>
                 <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
             </div>
