@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProductsFromArray(currentPage);
 });
 
-const productsPerPage = 20;
+const productsPerPage = 15;
 let currentPage = 1;
 
 function loadProductsFromArray(page = 1) {
