@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - User & Invoice Analytics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .output h3 {
+      margin-top: 0;
+    }
+
+    .output ul {
+      padding-left: 20px;
+    }
+
+    .output li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>User & Invoice Dashboard</h1>
+
+  <div class="button-container">
+    <button onclick="showUserFrequency()">Show User Frequency</button>
+    <button onclick="showInvoices()">Show All Invoices</button>
+    <button onclick="getUserInvoices()">Show My Invoices</button>
+  </div>
+
+  <div class="output" id="output">
+    <p>Select an option above to display data.</p>
+  </div>
+
+  <script>
+    function showUserFrequency() {
+      const data = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+
+      const genderCount = { Male: 0, Female: 0 };
+      const ageGroups = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+      const currentYear = new Date().getFullYear();
+
+      data.forEach(user => {
+        if (user.gender === "Male") genderCount.Male++;
+        else if (user.gender === "Female") genderCount.Female++;
+
+        const age = currentYear - parseInt(user.yearOfBirth);
+        if (age >= 18 && age <= 25) ageGroups["18-25"]++;
+        else if (age <= 35) ageGroups["26-35"]++;
+        else if (age <= 50) ageGroups["36-50"]++;
+        else ageGroups["50+"]++;
+      });
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3>User Frequency</h3>
+        <strong>Gender:</strong>
+        <ul>
+          <li>Male: ${genderCount.Male}</li>
+          <li>Female: ${genderCount.Female}</li>
+        </ul>
+        <strong>Age Groups:</strong>
+        <ul>
+          <li>18–25: ${ageGroups["18-25"]}</li>
+          <li>26–35: ${ageGroups["26-35"]}</li>
+          <li>36–50: ${ageGroups["36-50"]}</li>
+          <li>50+: ${ageGroups["50+"]}</li>
+        </ul>
+      `;
+    }
+
+    function showInvoices() {
+      const invoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
+      const output = document.getElementById("output");
+      if (invoices.length === 0) {
+        output.innerHTML = "<h3>No invoices found.</h3>";
+        return;
+      }
+
+      let html = "<h3>All Invoices</h3><ul>";
+      invoices.forEach((inv, index) => {
+        html += `<li>Invoice #${index + 1}: TRN - ${inv.trn} | Total - $${inv.total?.toFixed(2) || 0}</li>`;
+      });
+      html += "</ul>";
+      output.innerHTML = html;
+    }
+
+    function getUserInvoices() {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const invoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
+      if (!currentUser || !currentUser.trn) {
+        alert("No logged-in user found.");
+        return;
+      }
+
+      const userInvoices = invoices.filter(inv => inv.trn === currentUser.trn);
+
+      const output = document.getElementById("output");
+      if (userInvoices.length === 0) {
+        output.innerHTML = `<h3>No invoices found for TRN: ${currentUser.trn}</h3>`;
+        return;
+      }
+
+      let html = `<h3>Invoices for TRN: ${currentUser.trn}</h3><ul>`;
+      userInvoices.forEach((inv, index) => {
+        html += `<li>Invoice #${index + 1}: Total - $${inv.total?.toFixed(2) || 0}</li>`;
+      });
+      html += "</ul>";
+
+      output.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
+
