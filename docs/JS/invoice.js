@@ -115,13 +115,13 @@ const initials = getInitials();
 function cancel() {
     if (confirm("Are you sure you want to cancel this order?")) {
         localStorage.removeItem("orderData");
-        window.location.href = "dashboard.html";
+        window.location.href = "home.html";
     }
 }
 
 // Exit function
 function exitPage() {
-    window.location.href = "dashboard.html";
+    window.location.href = "home.html";
 }
 
 function getInitials() {
