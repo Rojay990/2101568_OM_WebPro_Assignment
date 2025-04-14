@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fill customer details
     document.getElementById("customerName").textContent = orderData["Full Name"];
     document.getElementById("paymentMethod").textContent = orderData["Payment Method"];
+    document.getElementById("TRN").textContent = currentUser["trn"]; 
+    document.getElementById("shippingAddress").textContent = orderData["Street Address"] +" "+ 
+    orderData["City"]+", "+ orderData["State/Province"] + ", "+ orderData["Postal Code"] + ", " + orderData["Country"];
 
-    // Generate invoice number and date
-    const invoiceNumber = "INV-" + Math.floor(100000 + Math.random() * 900000);
+const initials = getInitials();
+
+    const invoiceNumber = "INV-"+initials + Math.floor(100000 + Math.random() * 900000);
     const invoiceDate = new Date().toLocaleDateString();
 
     document.getElementById("invoiceNumber").textContent = invoiceNumber;
@@ -63,4 +67,14 @@ function cancel() {
 // Exit function
 function exitPage() {
     window.location.href = "dashboard.html";
+}
+
+function getInitials() {
+    const fname = String(currentUser["firstName"]);
+    const lname = String(currentUser["lastName"]);
+    
+    const firstInitial = fname[0].charAt(0).toUpperCase();
+    const lastInitial = lname[0].charAt(0).toUpperCase();
+
+    return firstInitial + lastInitial;
 }
