@@ -105,3 +105,11 @@
             margin-top: 20px;
             color: #777;
         }
+
+        .invoice-Head-Details {
+            margin-bottom: 20px;
+        }
+
+        .invoice-Head-Details p {
+            margin: 8px 0;
+        }

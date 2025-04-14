@@ -1,5 +1,5 @@
 const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
-sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
 let cartData = [];
 
@@ -87,7 +87,7 @@ function addQtyListeners() {
         localStorage.setItem("RegistrationData", JSON.stringify(userData));
 
         currentUser.cart = updatedCart;
-        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
       }
 
       renderCart();
@@ -120,14 +120,13 @@ document.getElementById("clearCartBtn").addEventListener("click", () => {
     localStorage.setItem("RegistrationData", JSON.stringify(userData));
 
     currentUser.cart = {};
-    sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    console.log("User cart cleared in localStorage.", currentUser);
   }
 
-  console.log(currentUser);
 
   renderCart();
 });
-console.log(currentUser);
 
 function closeCart() {
   window.location.href = "products.html";
