@@ -1,7 +1,6 @@
+const orderData = JSON.parse(localStorage.getItem("orderData"));
 document.addEventListener("DOMContentLoaded", () => {
-    const orderData = JSON.parse(localStorage.getItem("orderData"));
-
-    console.log(orderData); // For debugging
+    
 
     if (!orderData) {
         alert("No order data found.");
@@ -54,6 +53,62 @@ const initials = getInitials();
         `;
         invoiceDetails.appendChild(row);
     });
+
+    const businessName = document.getElementById("businessName").textContent;
+    const businessAddress = document.getElementById("businessAddress").textContent;
+    const businessPhone = document.getElementById("businessPhone").textContent;
+    const businessEmail = document.getElementById("businessEmail").textContent;
+
+    const customerName = document.getElementById("customerName").textContent;
+    const paymentMethod = document.getElementById("paymentMethod").textContent;
+    const trn = document.getElementById("TRN").textContent;
+    const shippingAddress = document.getElementById("shippingAddress").textContent;
+    const invoiceNum = document.getElementById("invoiceNumber").textContent;
+    const invDate = document.getElementById("invoiceDate").textContent;
+
+    const items = orderData.cart;
+    console.log("Item details: ",items); // For debugging
+
+    const cusInvoice = {
+        businessName: businessName,
+        businessAddress: businessAddress,
+        businessPhone: businessPhone,
+        businessEmail: businessEmail,
+        customerName: customerName,
+        paymentMethod: paymentMethod,
+        trn: trn,
+        shippingAddress: shippingAddress,
+        invoiceNumber: invoiceNum,
+        invoiceDate: invDate,
+        items
+
+    };
+
+    console.log("Customer Invoice: ", currentUser);
+    // Push cusInvoice to currentUser.invoice and update in localStorage
+    if (!currentUser.invoice) {
+        currentUser.invoices = [];
+    }
+    currentUser.invoices.push(cusInvoice);
+
+    // Update the user data in RegistrationData in localStorage
+    const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+    const userIndex = registrationData.findIndex(user => user.trn === currentUser.trn);
+
+    if (userIndex !== -1) {
+        const existingInvoice = registrationData[userIndex].invoices.find(invoice => invoice.invoiceNumber === cusInvoice.invoiceNumber);
+        if (!existingInvoice) {
+            registrationData[userIndex].invoices.push(cusInvoice);
+        } else {
+            console.warn("Invoice with this number already exists for the user.");
+        }
+        localStorage.setItem("RegistrationData", JSON.stringify(registrationData));
+    } else {
+        console.error("User not found in RegistrationData.");
+    }
+
+    console.log("Updated RegistrationData: ", registrationData); // For debugging
+    return cusInvoice;
 });
 
 // Cancel function
@@ -78,3 +133,43 @@ function getInitials() {
 
     return firstInitial + lastInitial;
 }
+
+function clearCart() {
+    // Clear the cart for the current user
+    if (currentUser && currentUser.cart) {
+        currentUser.cart = {};
+    }
+
+    // Update the user data in RegistrationData in localStorage
+    const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+    const userIndex = registrationData.findIndex(user => user.trn === currentUser.trn);
+
+    if (userIndex !== -1) {
+        registrationData[userIndex].cart = {};
+        localStorage.setItem("RegistrationData", JSON.stringify(registrationData));
+        console.log("Cart cleared for current user in RegistrationData.");
+    } else {
+        console.error("User not found in RegistrationData.");
+    }
+}
+
+// Call clearCart when the user leaves the invoice.html page
+window.addEventListener("beforeunload", () => {
+    if (nav === false) {
+        clearCart();
+    }
+});
+
+let nav = false;
+
+window.addEventListener('pageshow', function (event) {
+    const navType = performance.getEntriesByType("navigation")[0].type;
+
+    if (event.persisted || navType === "back_forward" || navType === "reload") {
+        nav = true;
+        console.log("User used back/forward button or reloaded. nav =", nav);
+    } else {
+        nav = false;
+        console.log("User did a normal navigation. nav =", nav);
+    }
+});

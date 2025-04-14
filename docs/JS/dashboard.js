@@ -57,3 +57,6 @@ updateProducts();
 
 // Repeat every 30 seconds
 setInterval(updateProducts, 5000);
+
+const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+console.log("Registration Data:", registrationData);

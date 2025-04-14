@@ -24,6 +24,7 @@ function renderCart() {
   let subtotal = 0;
   tbody.innerHTML = "";
 
+  console.log (currentUser);
   cartData.forEach((item) => {
     const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
@@ -131,3 +132,5 @@ document.getElementById("clearCartBtn").addEventListener("click", () => {
 function closeCart() {
   window.location.href = "products.html";
 }
+
+
