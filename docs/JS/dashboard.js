@@ -31,19 +31,19 @@ setTimeout(() => {
     <img src="${selectedProduct1.image}" alt="${selectedProduct1.name}">
     <h3>${selectedProduct1.name}</h3>
     <h3>${selectedProduct1.description}</h3>
-    <p>$${selectedProduct1.price}</p>`;
+    <p>$${selectedProduct1.price.toFixed(2)}</p>`;
 
     product2.innerHTML = `
     <img src="${selectedProduct2.image}" alt="${selectedProduct2.name}">
     <h3>${selectedProduct2.name}</h3>
     <h3>${selectedProduct2.description}</h3>
-    <p>$${selectedProduct2.price}</p>`;
+    <p>$${selectedProduct2.price.toFixed(2)}</p>`;
 
     product3.innerHTML = `
     <img src="${selectedProduct3.image}" alt="${selectedProduct3.name}">
     <h3>${selectedProduct3.name}</h3>
     <h3>${selectedProduct3.description}</h3>
-    <p>$${selectedProduct3.price}</p>`;
+    <p>$${selectedProduct3.price.toFixed(2)}</p>`;
 
     // Trigger fade-in
     [product1, product2, product3].forEach(el => {
