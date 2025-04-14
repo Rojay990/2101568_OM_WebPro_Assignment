@@ -78,7 +78,7 @@ button {
     padding: 12px;
     border: none;
     border-radius: 25px;
-    background-color: #eee;
+    background-color: #eeeeee;
     color: #333;
     font-size: 16px;
     cursor: pointer;
@@ -90,4 +90,34 @@ button:hover {
 }
 p{
     margin-bottom: 15px;
+}
+.forget-password a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.forget-password a:hover{
+    text-decoration: underline;
+    color: blue;
+}
+
+
+#Login{
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+#Login:hover{
+    text-decoration: underline;
+    color: blue;
+}
+#nextButton{
+    width: 100px;
+}
+
+.error-message {
+    color: rgb(255, 132, 0);
+    font-size: 17px;
+    margin: 10px 0;
 }
