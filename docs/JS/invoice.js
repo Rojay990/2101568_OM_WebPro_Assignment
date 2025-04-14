@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const initials = getInitials();
 
-    const invoiceNumber = "INV-"+initials + Math.floor(100000 + Math.random() * 900000);
+    const invoiceNumber = "INV-" + (parseInt(localStorage.getItem("invoiceNumber"), 10)) + "-" + initials;
     const invoiceDate = new Date().toLocaleDateString();
 
     document.getElementById("invoiceNumber").textContent = invoiceNumber;

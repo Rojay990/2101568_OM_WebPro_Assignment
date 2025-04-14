@@ -84,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Store in localStorage
         localStorage.setItem("orderData", JSON.stringify(formData));
 
+        const inNumber = Math.floor(100000 + Math.random() * 900000);
+        localStorage.setItem("invoiceNumber", inNumber);
+
         // Redirect
         window.location.href = "invoice.html";
     });
