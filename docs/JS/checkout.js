@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         alert("Order placed successfully!");
         localStorage.removeItem("cart"); // clear cart after order
+        window.location.href = "dashboard.html"; // redirect to homepage
     }
     });
 });

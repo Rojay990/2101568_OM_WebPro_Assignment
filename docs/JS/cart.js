@@ -108,3 +108,27 @@ renderCart();
 document.getElementById("checkout").addEventListener("click", () => {
   window.location.href = "checkout.html";
 });
+
+
+document.getElementById("clearCartBtn").addEventListener("click", () => {
+  cartData = [];
+
+  // Update user cart in localStorage
+  const userIndex = userData.findIndex(user => user.trn === currentUser.trn);
+  if (userIndex !== -1) {
+    userData[userIndex].cart = {};
+    localStorage.setItem("RegistrationData", JSON.stringify(userData));
+
+    currentUser.cart = {};
+    sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+  }
+
+  console.log(currentUser);
+
+  renderCart();
+});
+console.log(currentUser);
+
+function closeCart() {
+  window.location.href = "products.html";
+}

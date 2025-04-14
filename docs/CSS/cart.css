@@ -42,7 +42,20 @@ th, td {
   font-size: 1.1rem;
 }
 
-#checkout {
+
+.cart-controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-controls button {
+  margin: 0 10px;
+}
+
+
+
+#checkout, #closeCartBtn, #clearCartBtn {
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #000;
