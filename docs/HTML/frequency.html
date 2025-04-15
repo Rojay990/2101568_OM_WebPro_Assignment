@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Head Section: Meta tags, page title, and CSS links -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard - User & Invoice Analytics</title>
@@ -11,16 +12,17 @@
 
   <h1>User & Invoice Dashboard</h1>
 
+   <!-- Button Section: Controls to trigger different data displays -->
   <div class="button-container">
     <button onclick="showUserFrequency()">Show User Frequency</button>
     <button onclick="showInvoices()">Show All Invoices</button>
     <button onclick="getUserInvoices()">Show My Invoices</button>
   </div>
-
+<!-- Output Section: Display results based on user interaction -->
   <div class="output" id="output">
     <p>Select an option above to display data.</p>
   </div>
-
+<!-- JavaScript Section: Functionality for user actions -->
 <script src="../JS/frequency.js"></script>
 
 </body>

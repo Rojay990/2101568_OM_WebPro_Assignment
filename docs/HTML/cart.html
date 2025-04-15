@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Head Section: Metadata and stylesheets -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart</title>
@@ -9,7 +10,7 @@
   <link rel="stylesheet" href="../CSS/header.css" />
 </head>
 <body>
-  <!-- Navigation Bar -->
+ <!-- Header Section: Navigation Bar with logo and links -->
   <a name="head"><header class="header"></a>
     <div class="left-section">
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
@@ -51,6 +52,7 @@
     <a href="about.html">About Us</a>
 </div>
 
+<!-- Cart Section: Cart details and summary -->
   <div class="container">
     <h2>Your Cart (<span id="item-count">0</span> items)</h2>
     <table id="cart-table">
@@ -67,6 +69,7 @@
       </tbody>
     </table>
 
+     <!-- Summary Section -->
     <div class="summary">
       <p>Subtotal: $<span id="subtotal">0.00</span></p>
       <p>Sales Tax: $<span id="tax">0.00</span></p>
@@ -80,6 +83,7 @@
     </div>
   </div>
 
+<!-- Script Section: JavaScript functionality -->
   <script src="../JS/script.js"></script>
   <script src="../JS/cart.js"></script>
   

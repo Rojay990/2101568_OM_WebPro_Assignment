@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta and Title Information -->   
 <meta charset="UTF-8">
 <title>Registration Form</title>
 <link rel="stylesheet" href="../CSS/login.css">
@@ -9,6 +10,8 @@
 <div class=" register-container">
     <h2>Register</h2>
     <form id="registrationForm" novalidate>
+
+  <!-- Input Fields for User Data -->      
     <div class="input-group">
         <input type="text" id="firstName" placeholder="First Name" required>
         <input type="text" id="lastName" placeholder="Last Name" required>
@@ -23,15 +26,20 @@
         <input type="text" id="trn" placeholder="TRN (000-000-000)" required pattern="\d{3}-\d{3}-\d{3}">
         <input type="password" id="password" placeholder="Password" required>
     </div>
+
+    <!-- Registration Buttons --> 
     <button type="submit">Register</button>
     <button type="button" onclick="resetForm()">Cancel</button>
     <p id="error" style="color: yellow;"></p>
+
+    <!-- Switch Form Link (Login) -->
     <p class="switch-form">
         Already have account? <a href="../index.html" id="toggleLogin">Login</a>
     </p>
     </form>
 </div>
 
+<!-- External JavaScript File for Form Validation -->
 <script src="../JS/register.js"></script>
 </body>
 </html>
