@@ -1,3 +1,6 @@
+const output = document.getElementById("output");
+const para = document.getElementById("main-message");
+
 function showUserFrequency() {
     const data = JSON.parse(localStorage.getItem("RegistrationData")) || [];
 
@@ -17,7 +20,6 @@ function showUserFrequency() {
       else ageGroups["50+"]++;
     });
 
-    const output = document.getElementById("output");
     output.innerHTML = `
       <h3>User Frequency</h3>
       <strong>Gender:</strong>
@@ -43,25 +45,25 @@ function showUserFrequency() {
       output.innerHTML = "<h3>No invoices found.</h3>";
       return;
     }
-    output.style.display = "none";
+    para.style.display = "none";
+    output.innerHTML = "";
     
 
     invoices.forEach((inv, index) => {
       const invoiceSection = `
+      <hr>
         <section class="invoice">
-            <h2>Invoice</h2>
-            <div class="invoice-Head-Details">
                 <div>
-                    <p><strong>Business Name:</strong> <span id="businessName">DollarLess Enterprise</span></p>
-                    <p><strong>Address:</strong> <span id="businessAddress">123 Foodie Lane, Kingston, Jamaica</span></p>
-                    <p><strong>Phone:</strong> <span id="businessPhone">(876) 555-LESS</span></p>
-                    <p><strong>Email:</strong> <span id="businessEmail">info@DollarLessja.com</span></p>
-                    <p><strong>Invoice #:</strong> <span id="invoiceNumber"></span></p>
-                    <p><strong>Date:</strong> <span id="invoiceDate"></span></p>
-                    <p><strong>Customer Name:</strong> <span id="customerName"></span></p>
-                    <p><strong>Customer TRN:</strong> <span id="TRN"></span></p>
-                    <p><strong>Customer Shipping Address:</strong> <span id="shippingAddress"></span></p>
-                    <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+                    <p><strong>Business Name:</strong> <span id="businessName${index}">DollarLess Enterprise</span></p>
+                    <p><strong>Address:</strong> <span id="businessAddress${index}">123 Foodie Lane, Kingston, Jamaica</span></p>
+                    <p><strong>Phone:</strong> <span id="businessPhone${index}">(876) 555-LESS</span></p>
+                    <p><strong>Email:</strong> <span id="businessEmail${index}">info@DollarLessja.com</span></p>
+                    <p><strong>Invoice #:</strong> <span id="invoiceNumber${index}"></span></p>
+                    <p><strong>Date:</strong> <span id="invoiceDate${index}"></span></p>
+                    <p><strong>Customer Name:</strong> <span id="customerName${index}"></span></p>
+                    <p><strong>Customer TRN:</strong> <span id="TRN${index}"></span></p>
+                    <p><strong>Customer Shipping Address:</strong> <span id="shippingAddress${index}"></span></p>
+                    <p><strong>Payment Method:</strong> <span id="paymentMethod${index}"></span></p>
                 </div>
             </div>
             <table>
@@ -73,30 +75,30 @@ function showUserFrequency() {
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody id="invoiceDetails">
+                <tbody id="invoiceDetails${index}">
                 </tbody>
             </table>
         </section>
         `;
-        document.body.insertAdjacentHTML('beforeend', invoiceSection);
+        output.insertAdjacentHTML("beforeend", invoiceSection);
 
 
             // Fill customer details
-    document.getElementById("customerName").textContent = inv.customerName;
-    document.getElementById("paymentMethod").textContent = inv.paymentMethod;
-    document.getElementById("TRN").textContent = inv.trn; 
-    document.getElementById("shippingAddress").textContent = inv.shippingAddress;
+    document.getElementById("customerName" + index).textContent = inv.customerName;
+    document.getElementById("paymentMethod" + index).textContent = inv.paymentMethod;
+    document.getElementById("TRN" + index).textContent = inv.trn; 
+    document.getElementById("shippingAddress"+ index).textContent = inv.shippingAddress;
 
     const invoiceNumber = inv.invoiceNumber
     const invoiceDate = inv.invoiceDate;
 
-    document.getElementById("invoiceNumber").textContent = invoiceNumber;
-    document.getElementById("invoiceDate").textContent = invoiceDate;
+    document.getElementById("invoiceNumber" + index).textContent = invoiceNumber;
+    document.getElementById("invoiceDate" + index).textContent = invoiceDate;
 
     console.log("Invoice: ", inv);
 
     // Fill cart items into the invoice table
-    const invoiceDetails = document.getElementById("invoiceDetails");
+    const invoiceDetails = document.getElementById("invoiceDetails"+ index);
     inv.orderData.cart.forEach(item => {
         const row = document.createElement("tr");
         const total = (item.price * item.quantity).toFixed(2);

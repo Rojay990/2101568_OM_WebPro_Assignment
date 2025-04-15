@@ -53,3 +53,19 @@ body {
   .output li {
     margin-bottom: 8px;
   }
+
+  .invoice {
+    background-color: rgba(0, 255, 255, 0.237);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+p {
+  margin-bottom: 5px;
+  line-height: 1.6; /* Adds space between each line of text in p tags */
+}
+
+    table td, table th {
+
+      border: 2px solid rgb(248, 191, 191);
+  }
