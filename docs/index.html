@@ -8,11 +8,12 @@
 </head>
 <body>
     
-
+<!-- Login Container, Title and Form -->
 <div class="container">
     <h2 id="formTitle">Login</h2>
     
     <form id="authForm">
+         <!-- Input Field: TRN -->
         <div class="input-group">
             <input type="text" id="trn" placeholder="TAX REGISTRATION NUMBER (TRN)" required>
         </div>
@@ -20,7 +21,7 @@
         <div class="input-group">
             <input type="password" id="password" placeholder="PASSWORD" required>
         </div>
-
+<!-- Login Button , Error Message Display, Forgot Password Link -->
         <button type="submit" id="loginButton">Login</button>
         <p class="error-message" id="errorMessage"></p>
         <p class="error-message" id="lockoutMessage" style="color: rgb(255, 187, 0); display: none;"></p>
@@ -29,11 +30,12 @@
     <p class="forget-password">
         <a href="HTML/resetPassword.html" id="forgotPassword">Forget Password?</a>
     </p>
-
+ <!-- Switch to Sign-Up Link -->
     <p class="switch-form">
         Not a member? <a href="#" id="toggleSignup">Sign up</a>
     </p>
 </div>
+ <!-- External JavaScript -->
 <script src="JS/login.js"></script>
 </body>
 </html>
