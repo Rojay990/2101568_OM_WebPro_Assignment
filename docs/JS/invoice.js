@@ -66,9 +66,6 @@ const initials = getInitials();
     const invoiceNum = document.getElementById("invoiceNumber").textContent;
     const invDate = document.getElementById("invoiceDate").textContent;
 
-    const items = orderData.cart;
-    console.log("Item details: ",items); // For debugging
-
     const cusInvoice = {
         businessName: businessName,
         businessAddress: businessAddress,
@@ -80,7 +77,7 @@ const initials = getInitials();
         shippingAddress: shippingAddress,
         invoiceNumber: invoiceNum,
         invoiceDate: invDate,
-        items
+        orderData: orderData,
 
     };
 

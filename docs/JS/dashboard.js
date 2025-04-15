@@ -7,10 +7,10 @@ function showUserFrequency() {
     const currentYear = new Date().getFullYear();
 
     data.forEach(user => {
-      if (user.gender === "Male") genderCount.Male++;
-      else if (user.gender === "Female") genderCount.Female++;
+      if (user.gender === "Male" || user.gender === "male") genderCount.Male++;
+      else if (user.gender === "Female" || user.gender === "female") genderCount.Female++;
 
-      const age = currentYear - parseInt(user.yearOfBirth);
+      const age = currentYear -  new Date(user.dob).getFullYear();
       if (age >= 18 && age <= 25) ageGroups["18-25"]++;
       else if (age <= 35) ageGroups["26-35"]++;
       else if (age <= 50) ageGroups["36-50"]++;
@@ -43,13 +43,90 @@ function showUserFrequency() {
       output.innerHTML = "<h3>No invoices found.</h3>";
       return;
     }
+    output.style.display = "none";
+    
 
-    let html = "<h3>All Invoices</h3><ul>";
     invoices.forEach((inv, index) => {
-      html += `<li>Invoice #${index + 1}: TRN - ${inv.trn} | Total - $${inv.total?.toFixed(2) || 0}</li>`;
+      const invoiceSection = `
+        <section class="invoice">
+            <h2>Invoice</h2>
+            <div class="invoice-Head-Details">
+                <div>
+                    <p><strong>Business Name:</strong> <span id="businessName">DollarLess Enterprise</span></p>
+                    <p><strong>Address:</strong> <span id="businessAddress">123 Foodie Lane, Kingston, Jamaica</span></p>
+                    <p><strong>Phone:</strong> <span id="businessPhone">(876) 555-LESS</span></p>
+                    <p><strong>Email:</strong> <span id="businessEmail">info@DollarLessja.com</span></p>
+                    <p><strong>Invoice #:</strong> <span id="invoiceNumber"></span></p>
+                    <p><strong>Date:</strong> <span id="invoiceDate"></span></p>
+                    <p><strong>Customer Name:</strong> <span id="customerName"></span></p>
+                    <p><strong>Customer TRN:</strong> <span id="TRN"></span></p>
+                    <p><strong>Customer Shipping Address:</strong> <span id="shippingAddress"></span></p>
+                    <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceDetails">
+                </tbody>
+            </table>
+        </section>
+        `;
+        document.body.insertAdjacentHTML('beforeend', invoiceSection);
+
+
+            // Fill customer details
+    document.getElementById("customerName").textContent = inv.customerName;
+    document.getElementById("paymentMethod").textContent = inv.paymentMethod;
+    document.getElementById("TRN").textContent = inv.trn; 
+    document.getElementById("shippingAddress").textContent = inv.shippingAddress;
+
+    const invoiceNumber = inv.invoiceNumber
+    const invoiceDate = inv.invoiceDate;
+
+    document.getElementById("invoiceNumber").textContent = invoiceNumber;
+    document.getElementById("invoiceDate").textContent = invoiceDate;
+
+    console.log("Invoice: ", inv);
+
+    // Fill cart items into the invoice table
+    const invoiceDetails = document.getElementById("invoiceDetails");
+    inv.orderData.cart.forEach(item => {
+        const row = document.createElement("tr");
+        const total = (item.price * item.quantity).toFixed(2);
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.quantity}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>$${total}</td>
+        `;
+        invoiceDetails.appendChild(row);
     });
-    html += "</ul>";
-    output.innerHTML = html;
+
+    // Summary rows: Subtotal, Tax, Shipping, Total
+    const summaryData = [
+        { label: "Subtotal", value: inv.orderData.subtotal },
+        { label: "Tax", value: inv.orderData.tax },
+        { label: "Shipping", value: inv.orderData.shipping },
+        { label: "Grand Total", value: inv.orderData.total }
+    ];
+
+    summaryData.forEach(({ label, value }) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td colspan="3" style="text-align: right;"><strong>${label}</strong></td>
+            <td><strong>$${parseFloat(value).toFixed(2)}</strong></td>
+        `;
+        invoiceDetails.appendChild(row);
+    });
+        
+    });
   }
 
   function getUserInvoices() {
