@@ -130,7 +130,7 @@ document.getElementById("clearCartBtn").addEventListener("click", () => {
 });
 
 function closeCart() {
-  window.location.href = "products.html";
+  window.location.href = "Products.html";
 }
 
 
