@@ -95,6 +95,18 @@ const initials = getInitials();
     const registrationData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
     const userIndex = registrationData.findIndex(user => user.trn === currentUser.trn);
 
+    // Retrieve AllInvoices from localStorage or initialize as an empty array
+    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+
+    // Check if the invoice already exists in AllInvoices
+    const existingInvoice = allInvoices.find(invoice => invoice.invoiceNumber === cusInvoice.invoiceNumber);
+    if (!existingInvoice) {
+        allInvoices.push(cusInvoice); // Add the new invoice to AllInvoices
+        localStorage.setItem("AllInvoices", JSON.stringify(allInvoices)); // Update AllInvoices in localStorage
+    } else {
+        console.warn("Invoice with this number already exists in AllInvoices.");
+    }
+
     if (userIndex !== -1) {
         const existingInvoice = registrationData[userIndex].invoices.find(invoice => invoice.invoiceNumber === cusInvoice.invoiceNumber);
         if (!existingInvoice) {
@@ -107,7 +119,6 @@ const initials = getInitials();
         console.error("User not found in RegistrationData.");
     }
 
-    console.log("Updated RegistrationData: ", registrationData); // For debugging
     return cusInvoice;
 });
 
