@@ -54,6 +54,13 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     return;
     }
 
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        errorMsg.textContent = "Please enter a valid email address.";
+        return;
+    }
+
     // Check TRN uniqueness
     const existingData = JSON.parse(localStorage.getItem('RegistrationData')) || [];
     if (existingData.some(user => user.trn === trn)) {

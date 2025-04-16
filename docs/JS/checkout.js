@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const inNumber = Math.floor(100000 + Math.random() * 900000);
         localStorage.setItem("invoiceNumber", inNumber);
 
+        alert("Order placed successfully! Invoice sent to email.");
         // Redirect
         window.location.href = "invoice.html";
     });
